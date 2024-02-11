@@ -9,7 +9,7 @@ setup(
     ],
       entry_points={
         'console_scripts': [
-            'play-mystic-game=play_mystic_game:cli',
+            'play-mystic-blocks=play_mystic_game:cli',
         ],
     },
 )
