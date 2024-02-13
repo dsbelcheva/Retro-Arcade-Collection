@@ -1,17 +1,12 @@
 import pygame
 
-
-SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 720
-runner_img = pygame.image.load('../images/runner.png')
-
 class Runner:
-    def __init__(self, runner_image, x, y):
+    def __init__(self, image, x, y):
         self.rect = pygame.Rect(x, y, 50, 50)
+        self.image = pygame.image.load(image)
         self.speed = 5
         self.velocity_y = 0
         self.on_ground = False
-        self.image = self.image = pygame.image.load(runner_image)
         self.health = 100
         self.balance = 0
         self.has_axe = False
@@ -46,18 +41,19 @@ class Runner:
                 self.take_damage(10)
 
     def collect_coins(self, coins):
-        for coin in coins[:]:
+        for coin in coins:
             if self.rect.colliderect(coin.rect):
                 coins.remove(coin)
                 self.balance+=1
 
     def take_damage(self, amount):
-        self.health -= amount
-        if self.health <= 0:
-            print("DEAD!GAME OVER!")
+        if self.health > 0:
+            self.health -= amount
+        else:
+            return
 
-    def attack_monster(self, monster):
-        if self.has_axe and self.has_shield and self.balance >= 50:
+    def attack_monster(self, monster, total_coins_generated):
+        if self.has_axe and self.has_shield and self.balance >= total_coins_generated // 2:
             monster.take_damage(20)
         else:
             self.take_damage(20)

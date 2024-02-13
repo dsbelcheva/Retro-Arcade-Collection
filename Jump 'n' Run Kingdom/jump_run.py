@@ -1,8 +1,8 @@
 import pygame
 import sys
 from runner import Runner
-from obstacle import generate_platforms
-from coin import generate_coins
+from obstacle import Platform
+from coin import Coin
 from item import Item
 from monster import Monster
 
@@ -40,8 +40,8 @@ coin_img = pygame.image.load('../images/coin.png')
 
 runner = Runner('../images/runner.png', 0, SCREEN_HEIGHT - 360)
 
-platforms = generate_platforms()
-coins = generate_coins()
+platforms = Platform.generate_platforms()
+coins = Coin.generate_coins()
 total_coins_generated = 2
 
 axe = None
@@ -50,7 +50,7 @@ shield_img = pygame.image.load('../images/shield.png')
 axe_img= pygame.image.load('../images/axe.png')
 
 
-monster = Monster(SCREEN_WIDTH - 400, SCREEN_HEIGHT - 150, '../images/monster.png', 1)
+monster = Monster(1200, 160, '../images/monster.png', 1)
 
 monster_activation_threshold = 100
 
@@ -79,9 +79,14 @@ while running:
         coin.update(runner.speed//2)
         coin.draw(screen)
 
-    if platforms and platforms[-1].rect.x <= SCREEN_WIDTH - 1000 and total_coins_generated < 100 :
-        platforms.extend(generate_platforms())
-        coins.extend(generate_coins())
+    if  platforms and platforms[-1].rect.x <= SCREEN_WIDTH - 1000 and total_coins_generated < 100 :
+        platforms.extend(Platform.generate_platforms())
+        coins.extend(Coin.generate_coins())
+        total_coins_generated += 2
+
+    if not platforms and total_coins_generated < 100:
+        platforms.extend(Platform.generate_platforms())
+        coins.extend(Coin.generate_coins())
         total_coins_generated += 2
 
     runner.collect_coins(coins)
@@ -112,11 +117,9 @@ while running:
         monster.update(runner.rect.center)
         monster.draw(screen)
 
-    print(runner.health)
     victory = False
     if monster.active and runner.rect.colliderect(monster.rect):
-        runner.attack_monster(monster)
-        print(runner.health)
+        runner.attack_monster(monster, total_coins_generated)      
         if monster.health <= 0:
             print("Чудовището е победено!")
             monster.active = False

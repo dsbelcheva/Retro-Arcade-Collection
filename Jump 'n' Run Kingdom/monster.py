@@ -1,11 +1,9 @@
 import pygame
 
-monster_img = pygame.image.load('../images/monster.png')
-
 class Monster:
     def __init__(self, x, y, image, speed):
-        self.image = monster_img
-        self.rect = self.image.get_rect(topright=(1200, 160))
+        self.image =  pygame.image.load(image)
+        self.rect = self.image.get_rect(topright=(x, y))
         self.active = False
         self.speed = speed
         self.health = 100
@@ -20,11 +18,12 @@ class Monster:
             elif self.rect.x < target_pos[0]:
                 self.rect.x += self.speed
 
-
     def take_damage(self, damage):
-        self.health -= damage
-        if self.health <= 0:
+        if self.health > 0:
+            self.health -= damage
+        else:
             self.active = False
+            return
 
     def draw(self, screen):
         if self.active:
