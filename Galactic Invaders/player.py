@@ -8,6 +8,7 @@ class Player:
         self.x = x
         self.y = y
         self.speed = speed
+        self.score = 0
         self.image = pygame.image.load(image_path).convert_alpha()
         self.rect = self.image.get_rect(bottomleft=(x, y))
 

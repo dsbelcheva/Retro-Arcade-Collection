@@ -38,7 +38,7 @@ def draw_text(screen, game):
         screen.blit(text_game_over, [25, 200])
         screen.blit(text_game_over1, [50, 265])
 
-def start_game(mode='default'):
+def start_game(mode):
     pygame.init()
     screen = pygame.display.set_mode(SIZE)
     pygame.display.set_caption("Mystic Blocks")
