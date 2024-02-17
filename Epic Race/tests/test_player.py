@@ -1,7 +1,7 @@
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 import pygame
-from player import Player
+from epicrace.player import Player
 
 class TestPlayer(unittest.TestCase):
     @patch('pygame.image.load')

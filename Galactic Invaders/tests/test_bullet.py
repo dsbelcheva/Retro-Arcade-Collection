@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 import pygame
-from bullet import Bullet
+from galacticinvaders.bullet import Bullet
 
 class TestBullet(unittest.TestCase):
     def setUp(self):

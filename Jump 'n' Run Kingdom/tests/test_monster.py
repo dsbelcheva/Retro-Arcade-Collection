@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, patch
 import pygame
-from monster import Monster
+from jumprun.monster import Monster
 
 class TestMonster(unittest.TestCase):
     @patch('pygame.image.load')
@@ -13,26 +13,26 @@ class TestMonster(unittest.TestCase):
         self.monster = Monster(100, 100, '../images/monster.png', 5)
 
     def test_activate(self):
-        self.assertFalse(self.monster.active, "Monster should not be active initially")
+        self.assertFalse(self.monster.active)
         self.monster.activate()
-        self.assertTrue(self.monster.active, "Monster should be active after activation")
+        self.assertTrue(self.monster.active)
 
     def test_update_moves_towards_target_left(self):
         self.monster.activate()
         initial_x = self.monster.rect.x
         self.monster.update((initial_x - 10, 100))
-        self.assertEqual(self.monster.rect.x, initial_x - 5, "Monster should move left towards the target")
+        self.assertEqual(self.monster.rect.x, initial_x - 5)
 
     def test_update_moves_towards_target_right(self):
         self.monster.activate()
         initial_x = self.monster.rect.x
         self.monster.update((initial_x + 10, 100))
-        self.assertEqual(self.monster.rect.x, initial_x + 5, "Monster should move right towards the target")
+        self.assertEqual(self.monster.rect.x, initial_x + 5)
 
     def test_take_damage(self):
         initial_health = self.monster.health
         self.monster.take_damage(10)
-        self.assertEqual(self.monster.health, initial_health - 10, "Monster should take damage correctly")
+        self.assertEqual(self.monster.health, initial_health - 10)
 
     @patch('pygame.Surface')
     def test_draw_calls_screen_blit_when_active(self, mock_surface):

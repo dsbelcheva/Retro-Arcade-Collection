@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from obstacle import Platform, SCREEN_WIDTH, SCREEN_HEIGHT, PLATFORM_WIDTH
+from jumprun.obstacle import Platform, SCREEN_WIDTH, SCREEN_HEIGHT, PLATFORM_WIDTH
 
 class TestPlatform(unittest.TestCase):
 
@@ -34,7 +34,7 @@ class TestPlatform(unittest.TestCase):
         platform.update(player_speed)
         self.assertEqual(platform.rect.x, initial_x - player_speed)
 
-    @patch('obstacle.Platform.generate_platforms', return_value=[MagicMock(), MagicMock()])
+    @patch('jumprun.obstacle.Platform.generate_platforms', return_value=[MagicMock(), MagicMock()])
     def test_generate_platforms(self, mock_generate_platforms):
         num_platforms = 2
         platforms = Platform.generate_platforms(num_platforms=num_platforms)

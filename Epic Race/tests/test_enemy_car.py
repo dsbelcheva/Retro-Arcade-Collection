@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import pygame
-from enemy_car import EnemyCar, SCREEN_WIDTH, SCREEN_HEIGHT
+from epicrace.enemy_car import EnemyCar, SCREEN_WIDTH, SCREEN_HEIGHT
 
 class TestEnemyCar(unittest.TestCase):
     def setUp(self):

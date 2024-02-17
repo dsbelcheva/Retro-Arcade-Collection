@@ -1,7 +1,7 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import pygame
-from traffic_light import TrafficLight
+from epicrace.traffic_light import TrafficLight
 
 class TestTrafficLight(unittest.TestCase):
     @patch('pygame.image.load')
@@ -14,16 +14,16 @@ class TestTrafficLight(unittest.TestCase):
         mock_get_ticks.return_value = initial_time
         light.start()
         light.update()
-        self.assertEqual(light.current_color, 'RED', "The traffic light should initially be RED.")
+        self.assertEqual(light.current_color, 'RED')
         mock_get_ticks.return_value = initial_time + 1501
         light.update()
-        self.assertEqual(light.current_color, 'YELLOW', "The traffic light should change to YELLOW.")
+        self.assertEqual(light.current_color, 'YELLOW')
         mock_get_ticks.return_value = initial_time + 3002
         light.update()
-        self.assertEqual(light.current_color, 'GREEN', "The traffic light should change to GREEN.")
+        self.assertEqual(light.current_color, 'GREEN')
         mock_get_ticks.return_value = initial_time + 4503
         light.update()
-        self.assertEqual(light.current_color, 'RED', "The traffic light should cycle back to RED.")
+        self.assertEqual(light.current_color, 'RED')
 
 if __name__ == '__main__':
     unittest.main()

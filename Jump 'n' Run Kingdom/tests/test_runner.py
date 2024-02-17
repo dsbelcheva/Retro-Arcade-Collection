@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
-from runner import Runner
+from jumprun.runner import Runner
 
 class TestRunner(unittest.TestCase):
     def setUp(self):

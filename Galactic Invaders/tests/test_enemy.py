@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, patch
 import pygame
-from enemy import Enemy, SCREEN_WIDTH, SCREEN_HEIGHT
+from galacticinvaders.enemy import Enemy, SCREEN_WIDTH, SCREEN_HEIGHT
 
 class TestEnemy(unittest.TestCase):
     def setUp(self):

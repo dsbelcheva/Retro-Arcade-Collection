@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
-from coin import Coin, SCREEN_WIDTH
+from jumprun.coin import Coin, SCREEN_WIDTH
 
 class TestCoin(unittest.TestCase):
     @patch('pygame.image.load')
@@ -16,7 +16,7 @@ class TestCoin(unittest.TestCase):
         self.coin.update(5)
         self.assertEqual(self.coin.rect.x, original_x - 5)
 
-    @patch('coin.random.randint')
+    @patch('jumprun.coin.random.randint')
     def test_generate_coins_creates_coins_at_expected_positions(self, mock_randint):
         mock_randint.side_effect = [100, 200]
         coins = Coin.generate_coins(num_coins=2, distance_between=40)

@@ -4,7 +4,7 @@ from unittest.mock import patch, MagicMock
 SCREEN_WIDTH = 900
 class TestPlayer(unittest.TestCase):
     
-    @patch('bullet.Bullet')
+    @patch('galacticinvaders.bullet.Bullet')
     @patch('pygame.image.load')
     def setUp(self, mock_load, mock_bullet):
         mock_image = MagicMock()
@@ -17,7 +17,7 @@ class TestPlayer(unittest.TestCase):
         mock_rect.bottomleft = (100, 100)
         mock_image.get_rect.return_value = mock_rect
         
-        from player import Player
+        from galacticinvaders.player import Player
         self.player = Player(100, 100, 5, '../images/player.png')
 
     def test_move_left(self):

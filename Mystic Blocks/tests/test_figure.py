@@ -1,5 +1,5 @@
 import unittest
-from figure import Figure, colors
+from mysticblocks.figure import Figure, colors
 
 class TestFigure(unittest.TestCase):
     def setUp(self):
@@ -23,17 +23,17 @@ class TestFigure(unittest.TestCase):
     def test_move_down(self):
         initial_y = self.figure.y
         self.figure.y += 1
-        self.assertEqual(self.figure.y, initial_y + 1, "Wrong move down.")
+        self.assertEqual(self.figure.y, initial_y + 1)
 
     def test_move_left(self):
         initial_x = self.figure.x
         self.figure.x -= 1
-        self.assertEqual(self.figure.x, initial_x - 1, "Wrong move left.")
+        self.assertEqual(self.figure.x, initial_x - 1)
 
     def test_move_right(self):
         initial_x = self.figure.x
         self.figure.x += 1
-        self.assertEqual(self.figure.x, initial_x + 1, "Wrong move right.")
+        self.assertEqual(self.figure.x, initial_x + 1)
         
     def test_rotation_at_edge(self):
         self.figure.x = 0 
