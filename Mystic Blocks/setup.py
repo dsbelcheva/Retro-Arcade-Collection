@@ -1,15 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='MysticBlocks',
     version='0.1.0',
-    py_modules=['play_mystic_blocks'],
+    packages=find_packages(),
     install_requires=[
         'click',
     ],
       entry_points={
         'console_scripts': [
-            'play-mystic-blocks=play_mystic_blocks:cli',
+            'play-mystic-blocks=mysticblocks.play_mystic_blocks:cli',
         ],
     },
 )

@@ -1,0 +1,2 @@
+[console_scripts]
+play-mystic-blocks = mysticblocks.play_mystic_blocks:cli
