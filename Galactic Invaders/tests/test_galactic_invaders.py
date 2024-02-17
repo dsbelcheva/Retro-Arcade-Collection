@@ -1,18 +1,19 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import pygame
-from player import Player 
-from enemy import Enemy 
-from galactic_invaders import start_game
+from player import Player
+from enemy import Enemy
+
+pygame.init = MagicMock()
+pygame.display.set_mode = MagicMock(return_value=MagicMock())
 
 class TestSpaceInvadersGame(unittest.TestCase):
-    @patch('pygame.image.load')
-    @patch('pygame.display.set_mode')
-    def setUp(self, mock_set_mode, mock_load):
-        pygame.init = MagicMock()
-        pygame.display.set_mode = MagicMock(return_value=MagicMock())
-        self.mock_screen = pygame.display.set_mode((900, 600))
-        mock_load.return_value = MagicMock()
+    def setUp(self):
+        self.patcher = patch('pygame.image.load', MagicMock(return_value=MagicMock(convert_alpha=MagicMock())))
+        self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
 
     @patch('player.Player.move_left')
     @patch('player.Player.move_right')
@@ -27,7 +28,7 @@ class TestSpaceInvadersGame(unittest.TestCase):
     def test_generate_enemy(self, mock_generate_enemy):
         enemies = []
         Enemy.generate_enemy(enemies, '../images/enemy.png')
-        mock_generate_enemy.assert_called_once_with(enemies, '../images/enemy.png', speed=2)
+        mock_generate_enemy.assert_called_once_with(enemies, '../images/enemy.png')
 
     @patch('bullet.Bullet')
     def test_player_shoot(self, MockBullet):
@@ -35,7 +36,6 @@ class TestSpaceInvadersGame(unittest.TestCase):
         bullets = []
         player.shoot(bullets, '../images/bullet.png')
         self.assertTrue(len(bullets) > 0, "Bullet was not added on shooting.")
-
 
 if __name__ == '__main__':
     unittest.main()

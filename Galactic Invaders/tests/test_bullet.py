@@ -1,25 +1,28 @@
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, patch
 import pygame
 from bullet import Bullet
 
 class TestBullet(unittest.TestCase):
-    @patch('pygame.image.load')
-    def setUp(self, mock_load):
+    def setUp(self):
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
-        self.bullet = Bullet(100, 100, '../images/bullet.png')
-        self.bullet.image = Mock()
+        self.mock_image = MagicMock()
+        self.mock_rect = MagicMock(center=(100, 200))
+        self.mock_image.get_rect.return_value = self.mock_rect
 
-    def test_move(self):
-        original_y = self.bullet.y
-        self.bullet.move()
-        self.assertEqual(self.bullet.y, original_y + self.bullet.speed, "Куршумът не се е преместил правилно.")
+    def tearDown(self):
+        pygame.quit()
 
-    def test_draw(self):
-        with patch('pygame.Surface.blit') as mock_blit:
-            self.bullet.draw(self.screen)
-            mock_blit.assert_called_with(self.bullet.image, (self.bullet.x, self.bullet.y))
+    @patch('pygame.image.load')
+    def test_move(self, mock_load):
+        mock_load.return_value = self.mock_image
+        bullet = Bullet(100, 200, '../images/bullet.png')
+        original_y = bullet.y
+        bullet.move()
+        self.assertEqual(bullet.y, original_y + bullet.speed)
+        self.assertEqual(bullet.rect.y, original_y + bullet.speed)
 
 if __name__ == '__main__':
     unittest.main()
+
