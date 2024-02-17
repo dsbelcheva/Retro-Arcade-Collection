@@ -1,5 +1,5 @@
 import click
-from galactic_invaders import start_game
+from .galactic_invaders import start_game
 
 @click.command(help="Start the Galactic Invaders game.")
 @click.option('--mode', type=click.Choice(['default', 'speed']), default='default', help='Game mode: "default" or "speed".')

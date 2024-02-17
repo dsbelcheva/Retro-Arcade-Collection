@@ -1,6 +1,6 @@
 import pygame
-from player import Player
-from enemy import Enemy
+from .player import Player
+from .enemy import Enemy
 
 
 SCREEN_WIDTH = 900

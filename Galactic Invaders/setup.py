@@ -1,15 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='Galactic Invaders',
     version='0.1.0',
-    py_modules=['play_galactic_invaders'],
+    packages=find_packages(),
     install_requires=[
         'click',
     ],
       entry_points={
         'console_scripts': [
-            'play_galactic_invaders=play_galactic_invaders:cli',
+            'play-galactic-invaders=galacticinvaders.play_galactic_invaders:cli',
         ],
     },
 )

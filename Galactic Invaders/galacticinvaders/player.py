@@ -1,5 +1,5 @@
 import pygame
-from bullet import Bullet
+from .bullet import Bullet
 
 SCREEN_WIDTH = 900
 

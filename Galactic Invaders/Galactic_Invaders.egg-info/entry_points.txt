@@ -1,0 +1,2 @@
+[console_scripts]
+play-galactic-invaders = galacticinvaders.play_galactic_invaders:cli
