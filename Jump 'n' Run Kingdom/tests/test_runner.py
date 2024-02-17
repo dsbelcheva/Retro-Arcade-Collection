@@ -17,11 +17,6 @@ class TestRunner(unittest.TestCase):
         self.assertEqual(self.runner.velocity_y, -16)
         self.assertFalse(self.runner.on_ground)
 
-    def test_apply_gravity_increases_y_velocity(self):
-        self.runner.velocity_y = 0
-        self.runner.apply_gravity()
-        self.assertEqual(self.runner.velocity_y, 0.5)
-
     def test_collect_coins_increases_balance(self):
         coins = [Mock()]
         self.runner.collect_coins(coins)

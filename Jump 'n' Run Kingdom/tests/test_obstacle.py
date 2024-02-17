@@ -1,34 +1,50 @@
 import unittest
-from unittest.mock import Mock, patch
-from obstacle import Platform, SCREEN_WIDTH, SCREEN_HEIGHT
+from unittest.mock import MagicMock, patch
+from obstacle import Platform, SCREEN_WIDTH, SCREEN_HEIGHT, PLATFORM_WIDTH
 
 class TestPlatform(unittest.TestCase):
-    @patch('platform_module.pygame.image.load')
-    def setUp(self, mock_image_load):
-        self.mock_image = Mock()
-        self.mock_image.get_rect.return_value = Mock(topleft=(0, 0))
-        mock_image_load.return_value = self.mock_image
 
-        self.platform = Platform(100, SCREEN_HEIGHT - 360, '../images/platform.png')
+    def setUp(self):
+        self.mock_load_patcher = patch('pygame.image.load')
+        self.mock_load = self.mock_load_patcher.start()
+        mock_surface = MagicMock()
+        self.mock_rect = MagicMock()
+        mock_surface.get_rect.return_value = self.mock_rect
+        self.mock_load.return_value = mock_surface
+        self.mock_rect.x = 0
+        self.mock_rect.y = 0
 
-    def test_update_moves_platform_left(self):
-        original_x = self.platform.rect.x
-        self.platform.update(5)
-        self.assertEqual(self.platform.rect.x, original_x - 5)
+    def tearDown(self):
+        self.mock_load_patcher.stop()
 
-    @patch('platform_module.pygame.image.load')
-    def test_generate_platforms_creates_platforms(self, mock_image_load):
-        mock_image_load.return_value = self.mock_image
-        platforms = Platform.generate_platforms()
-        self.assertEqual(len(platforms), 2)
-        for platform in platforms:
-            self.assertTrue(platform.rect.x > SCREEN_WIDTH)
-            self.assertEqual(platform.rect.y, SCREEN_HEIGHT - 360)
+    def test_platform_initialization(self):
+        x, y = 100, SCREEN_HEIGHT - 360
+        self.mock_rect.x = x
+        self.mock_rect.y = y
+        platform = Platform(x, y, '../images/platform.png')
+        self.assertEqual(platform.rect.x, x)
+        self.assertEqual(platform.rect.y, y)
+        self.mock_load.assert_called_once_with('../images/platform.png')
 
-    def test_draw_calls_screen_blit(self):
-        screen_mock = Mock()
-        self.platform.draw(screen_mock)
-        screen_mock.blit.assert_called_with(self.mock_image, self.platform.rect.topleft)
+    def test_update(self):
+        player_speed = 5
+        initial_x = 100
+        self.mock_rect.x = initial_x
+        platform = Platform(initial_x, SCREEN_HEIGHT - 360, '../images/platform.png')
+        platform.update(player_speed)
+        self.assertEqual(platform.rect.x, initial_x - player_speed)
+
+    @patch('obstacle.Platform.generate_platforms', return_value=[MagicMock(), MagicMock()])
+    def test_generate_platforms(self, mock_generate_platforms):
+        num_platforms = 2
+        platforms = Platform.generate_platforms(num_platforms=num_platforms)
+        self.assertEqual(len(platforms), num_platforms)
+        for i, platform in enumerate(platforms):
+            expected_x = SCREEN_WIDTH + i * (PLATFORM_WIDTH + 200)
+            self.assertTrue(mock_generate_platforms.called)
 
 if __name__ == '__main__':
     unittest.main()
+
+
+

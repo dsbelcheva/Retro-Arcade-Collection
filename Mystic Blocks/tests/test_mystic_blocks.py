@@ -22,13 +22,14 @@ class TestMysticBlocks(unittest.TestCase):
         self.game.remove_lines()
         self.assertTrue(all(cell == 0 for cell in self.game.field[-1]))
 
-    def test_game_over(self):
+    def test_game_over_directly(self):
+        self.game = MysticBlocks(20, 10)
+        for x in range(self.game.width):
+            self.game.field[0][x] = 1
         self.game.new_figure()
-        self.game.figure.y = 0
-        while not self.game.collision():
-            self.game.go_down()
+        self.game.figure.y = 0 
         self.game.freeze()
-        self.assertFalse(self.game.state == "gameover")
+        self.assertEqual(self.game.state, "gameover", "Състоянието на играта не е променено на 'game over', както се очаква.")
         
     def test_figure_rotation_without_collision(self):
         self.game.new_figure()
