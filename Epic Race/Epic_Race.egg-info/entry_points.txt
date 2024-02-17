@@ -1,0 +1,2 @@
+[console_scripts]
+play-epic-race = epicrace.play_epic_race:cli

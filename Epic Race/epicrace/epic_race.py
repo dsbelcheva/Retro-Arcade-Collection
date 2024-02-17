@@ -1,8 +1,8 @@
 import pygame
 import random
-from player import Player
-from enemy_car import EnemyCar
-from traffic_light import TrafficLight
+from .player import Player
+from .enemy_car import EnemyCar
+from .traffic_light import TrafficLight
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 740, 700
 FPS = 60
@@ -25,8 +25,6 @@ background_image2 = pygame.transform.scale(background_image2, (SCREEN_WIDTH, SCR
 background_position_1 = [0, 0]
 background_position_2 = [0, -SCREEN_HEIGHT]
 
-number_of_cars = 10
-
 def move_background():
     global background_position_1, background_position_2
 
@@ -40,7 +38,7 @@ def move_background():
     if background_position_2[1] >= SCREEN_HEIGHT:
         background_position_2[1] = -SCREEN_HEIGHT
 class Game:
-    def __init__(self):
+    def __init__(self, number_of_cars=10):
         self.running = True
         self.game_active = False
         self.player =  Player('../images/car.png', SCREEN_WIDTH / 2, SCREEN_HEIGHT - 180, 1)
@@ -64,6 +62,7 @@ class Game:
         self.lose_image = pygame.image.load("../images/game_over.png").convert_alpha()
         self.game_over = False
         self.victory = False
+        self.number_of_cars = number_of_cars
     
     def spawn_tank(self):
         x = random.randint(0, SCREEN_WIDTH - self.tank_image.get_width())
@@ -83,10 +82,9 @@ class Game:
                     self.running = False
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_s and not self.game_active:
                     self.traffic_light.start()
-                if event.type == ENEMY_SPAWN and self.game_active and self.current_number_of_cars < number_of_cars:
+                if event.type == ENEMY_SPAWN and self.game_active and self.current_number_of_cars < self.number_of_cars:
                     EnemyCar.generate_enemy(self.enemies, self.enemy_car_images)
                     self.current_number_of_cars += 1
-                    print(self.current_number_of_cars)
                 if event.type == tank_SPAWN_EVENT and self.game_active:
                     self.spawn_tank()
 
@@ -125,7 +123,7 @@ class Game:
                         if self.lives <= 0:
                             self.game_over = True
                             break
-            if self.current_number_of_cars >= number_of_cars and self.lives > 0:
+            if self.current_number_of_cars >= self.number_of_cars and self.lives > 0:
                 self.game_over = True
                 self.victory = True
             elif self.lives <= 0:
@@ -145,8 +143,3 @@ class Game:
             pygame.display.flip()
 
         pygame.quit()
-
-
-if __name__ == "__main__":
-    game = Game()
-    game.run()
