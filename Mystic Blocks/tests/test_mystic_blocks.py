@@ -1,6 +1,7 @@
 import unittest
 from mysticblocks.game_engine import MysticBlocks
 
+
 class TestMysticBlocks(unittest.TestCase):
     def setUp(self):
         self.game = MysticBlocks(20, 10)
@@ -27,10 +28,10 @@ class TestMysticBlocks(unittest.TestCase):
         for x in range(self.game.width):
             self.game.field[0][x] = 1
         self.game.new_figure()
-        self.game.figure.y = 0 
+        self.game.figure.y = 0
         self.game.freeze()
         self.assertEqual(self.game.state, "gameover")
-        
+
     def test_figure_rotation_without_collision(self):
         self.game.new_figure()
         initial_image = self.game.figure.image()
@@ -53,6 +54,7 @@ class TestMysticBlocks(unittest.TestCase):
                 special_blocks_generated += 1
         expected_special_blocks = 20 // 5
         self.assertEqual(special_blocks_generated, expected_special_blocks)
+
 
 if __name__ == '__main__':
     unittest.main()

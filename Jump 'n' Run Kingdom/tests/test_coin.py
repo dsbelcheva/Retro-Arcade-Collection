@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import Mock, patch
 from jumprun.coin import Coin, SCREEN_WIDTH
 
+
 class TestCoin(unittest.TestCase):
     @patch('pygame.image.load')
     def setUp(self, mock_image_load):
@@ -30,7 +31,9 @@ class TestCoin(unittest.TestCase):
     def test_draw_calls_screen_blit_with_correct_arguments(self):
         screen_mock = Mock()
         self.coin.draw(screen_mock)
-        screen_mock.blit.assert_called_once_with(self.mock_image, self.coin.rect.topleft)
+        screen_mock.blit.assert_called_once_with(
+            self.mock_image, self.coin.rect.topleft)
+
 
 if __name__ == '__main__':
     unittest.main()

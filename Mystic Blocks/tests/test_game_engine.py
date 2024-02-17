@@ -1,6 +1,7 @@
 import unittest
 from mysticblocks.game_engine import MysticBlocks
 
+
 class TestMysticBlocks(unittest.TestCase):
     def setUp(self):
         self.game = MysticBlocks(20, 10)
@@ -42,6 +43,7 @@ class TestMysticBlocks(unittest.TestCase):
         while not self.game.collision():
             self.game.go_down()
         self.game.freeze()
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,6 @@
 import pygame
 
+
 class Runner:
     def __init__(self, image, x, y):
         self.rect = pygame.Rect(x, y, 50, 50)
@@ -44,7 +45,7 @@ class Runner:
         for coin in coins:
             if self.rect.colliderect(coin.rect):
                 coins.remove(coin)
-                self.balance+=1
+                self.balance += 1
 
     def take_damage(self, amount):
         if self.health > 0:

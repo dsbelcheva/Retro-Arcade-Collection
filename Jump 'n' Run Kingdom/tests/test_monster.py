@@ -3,6 +3,7 @@ from unittest.mock import Mock, patch
 import pygame
 from jumprun.monster import Monster
 
+
 class TestMonster(unittest.TestCase):
     @patch('pygame.image.load')
     def setUp(self, mock_load):
@@ -39,7 +40,9 @@ class TestMonster(unittest.TestCase):
         screen_mock = mock_surface.return_value
         self.monster.activate()
         self.monster.draw(screen_mock)
-        screen_mock.blit.assert_called_once_with(self.monster.image, self.monster.rect.topleft)
+        screen_mock.blit.assert_called_once_with(
+            self.monster.image, self.monster.rect.topleft)
+
 
 if __name__ == '__main__':
     unittest.main()

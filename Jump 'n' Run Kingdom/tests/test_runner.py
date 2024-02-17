@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import Mock, patch
 from jumprun.runner import Runner
 
+
 class TestRunner(unittest.TestCase):
     def setUp(self):
         self.mock_pygame_rect = patch('pygame.Rect').start()
@@ -43,6 +44,7 @@ class TestRunner(unittest.TestCase):
         monster = Mock()
         self.runner.attack_monster(monster, 100)
         self.assertEqual(self.runner.health, 80)
+
 
 if __name__ == '__main__':
     unittest.main()

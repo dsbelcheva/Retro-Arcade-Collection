@@ -3,6 +3,7 @@ from unittest.mock import patch
 import pygame
 from epicrace.player import Player
 
+
 class TestPlayer(unittest.TestCase):
     @patch('pygame.image.load')
     def test_player_initial_position(self, mock_image_load):
@@ -25,6 +26,7 @@ class TestPlayer(unittest.TestCase):
         player = Player('../images/car.png', 100, 150, 5)
         player.update(keys_pressed)
         self.assertEqual(player.rect.x, 105)
+
 
 if __name__ == '__main__':
     unittest.main()

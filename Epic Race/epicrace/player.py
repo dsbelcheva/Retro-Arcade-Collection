@@ -3,6 +3,7 @@ import pygame
 SCREEN_WIDTH = 740
 SCREEN_HEIGHT = 700
 
+
 class Player:
     def __init__(self, image_path, x, y, speed):
         self.image = pygame.image.load(image_path)

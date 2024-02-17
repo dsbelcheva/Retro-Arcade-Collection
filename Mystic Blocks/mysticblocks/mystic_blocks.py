@@ -8,11 +8,13 @@ GRAY = (128, 128, 128)
 SIZE = (400, 500)
 FPS = 20
 
+
 def draw_game(screen, game):
     screen.fill(WHITE)
     for i in range(game.height):
         for j in range(game.width):
-            pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+            pygame.draw.rect(screen, GRAY, [
+                             game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
             if game.field[i][j] > 0:
                 pygame.draw.rect(screen, colors[game.field[i][j]],
                                  [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1])
@@ -24,8 +26,10 @@ def draw_game(screen, game):
                 if p in game.figure.image():
                     pygame.draw.rect(screen, colors[game.figure.color],
                                      [game.x + game.zoom * (j + game.figure.x) + 1,
-                                      game.y + game.zoom * (i + game.figure.y) + 1,
+                                      game.y + game.zoom *
+                                      (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2])
+
 
 def draw_text(screen, game):
     font = pygame.font.SysFont('Calibri', 25, True, False)
@@ -37,6 +41,7 @@ def draw_text(screen, game):
         text_game_over1 = font1.render("Press ESC", True, BLACK)
         screen.blit(text_game_over, [25, 200])
         screen.blit(text_game_over1, [50, 265])
+
 
 def start_game(mode):
     pygame.init()

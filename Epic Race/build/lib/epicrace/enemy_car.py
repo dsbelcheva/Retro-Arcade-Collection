@@ -4,6 +4,7 @@ import random
 SCREEN_WIDTH = 740
 SCREEN_HEIGHT = 700
 
+
 class EnemyCar:
     def __init__(self, x, y, speed, image_path):
         self.image = pygame.image.load(image_path).convert_alpha()
@@ -20,7 +21,7 @@ class EnemyCar:
 
     def is_off_screen(self):
         return self.rect.top > SCREEN_HEIGHT
-    
+
     @staticmethod
     def generate_enemy(enemies_list, images_path, speed=0.6):
         new_enemy_x = random.randint(0, SCREEN_WIDTH - 74)

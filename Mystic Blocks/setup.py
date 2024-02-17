@@ -7,7 +7,7 @@ setup(
     install_requires=[
         'click',
     ],
-      entry_points={
+    entry_points={
         'console_scripts': [
             'play-mystic-blocks=mysticblocks.play_mystic_blocks:cli',
         ],

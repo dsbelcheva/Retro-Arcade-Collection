@@ -7,7 +7,7 @@ setup(
     install_requires=[
         'click',
     ],
-      entry_points={
+    entry_points={
         'console_scripts': [
             'play-galactic-invaders=galacticinvaders.play_galactic_invaders:cli',
         ],

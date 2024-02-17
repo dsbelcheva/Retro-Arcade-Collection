@@ -5,6 +5,7 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
 PLATFORM_WIDTH = 132
 
+
 class Platform:
     def __init__(self, x, y, image):
         self.image = pygame.image.load(image)
@@ -21,5 +22,6 @@ class Platform:
         platforms = []
         for i in range(num_platforms):
             x = SCREEN_WIDTH + i * (PLATFORM_WIDTH + distance_between)
-            platforms.append(Platform(x, platform_height, '../images/platform.png'))
+            platforms.append(
+                Platform(x, platform_height, '../images/platform.png'))
         return platforms

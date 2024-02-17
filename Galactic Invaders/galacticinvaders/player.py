@@ -3,6 +3,7 @@ from .bullet import Bullet
 
 SCREEN_WIDTH = 900
 
+
 class Player:
     def __init__(self, x, y, speed, image_path):
         self.x = x

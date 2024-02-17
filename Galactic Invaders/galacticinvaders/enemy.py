@@ -4,6 +4,7 @@ import pygame
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 600
 
+
 class Enemy:
     def __init__(self, x, y, speed, image_path):
         self.image = pygame.image.load(image_path).convert_alpha()
@@ -27,7 +28,7 @@ class Enemy:
                 bullets.remove(bullet)
                 return True
         return False
-    
+
     @staticmethod
     def generate_enemy(enemies_list, image_path, speed=2):
         new_enemy_x = random.randint(0, SCREEN_WIDTH - 64)

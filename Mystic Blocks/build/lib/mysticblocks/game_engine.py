@@ -1,5 +1,6 @@
 from .figure import Figure
 
+
 class MysticBlocks:
     def __init__(self, height, width, mode='default'):
         self.level = 2
@@ -13,7 +14,7 @@ class MysticBlocks:
         self.zoom = 20
         self.figure = None
         self.mode = mode
-    
+
         self.height = height
         self.width = width
         self.field = []
@@ -71,7 +72,8 @@ class MysticBlocks:
         for i in range(4):
             for j in range(4):
                 if i * 4 + j in self.figure.image():
-                    self.field[i + self.figure.y][j + self.figure.x] = self.figure.color
+                    self.field[i + self.figure.y][j +
+                                                  self.figure.x] = self.figure.color
                     if self.figure.is_special:
                         for di in (-1, 0, 1):
                             for dj in (-1, 0, 1):

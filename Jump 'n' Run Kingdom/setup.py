@@ -7,7 +7,7 @@ setup(
     install_requires=[
         'click',
     ],
-      entry_points={
+    entry_points={
         'console_scripts': [
             'play-jump-run=jumprun.play_jump_run:cli',
         ],

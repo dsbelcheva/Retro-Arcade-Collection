@@ -3,6 +3,7 @@ from unittest.mock import MagicMock, patch
 import pygame
 from galacticinvaders.bullet import Bullet
 
+
 class TestBullet(unittest.TestCase):
     def setUp(self):
         pygame.init()
@@ -23,6 +24,6 @@ class TestBullet(unittest.TestCase):
         self.assertEqual(bullet.y, original_y + bullet.speed)
         self.assertEqual(bullet.rect.y, original_y + bullet.speed)
 
+
 if __name__ == '__main__':
     unittest.main()
-

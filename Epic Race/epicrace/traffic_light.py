@@ -1,5 +1,6 @@
 import pygame
 
+
 class TrafficLight:
     def __init__(self):
         self.images = {

@@ -13,10 +13,10 @@ def start_game(mode, max_number_of_enemies):
     pygame.display.set_caption("Space Invaders")
     background_image = pygame.image.load('../images/background_galactic.jpg')
     background_image = pygame.transform.scale(background_image, (900, 600))
-    player = Player(350,460,5,'../images/spaceship.png')
+    player = Player(350, 460, 5, '../images/spaceship.png')
     enemies = []
     bullets = []
-    player_lives = 3 
+    player_lives = 3
     font = pygame.font.Font('freesansbold.ttf', 28)
     clock = pygame.time.Clock()
     Enemy.generate_enemy(enemies, '../images/enemy.png')
@@ -24,7 +24,6 @@ def start_game(mode, max_number_of_enemies):
     winner_image = pygame.image.load("../images/winner.png").convert_alpha()
     lose_image = pygame.image.load("../images/game_over.png").convert_alpha()
     game_over = False
-
 
     last_enemy_spawn_time = pygame.time.get_ticks()
     number_of_enemies = 1
@@ -49,7 +48,7 @@ def start_game(mode, max_number_of_enemies):
         if keys[pygame.K_SPACE] and can_shoot:
             player.shoot(bullets, '../images/bullet.png')
             can_shoot = False
-    
+
         screen.blit(background_image, (0, 0))
         player.draw(screen)
 
@@ -91,17 +90,22 @@ def start_game(mode, max_number_of_enemies):
         if game_over:
             screen.fill((0, 0, 0))
             if victory:
-                screen.blit(winner_image, (SCREEN_WIDTH // 2 - winner_image.get_width() // 2, SCREEN_HEIGHT // 2 - winner_image.get_height() // 2))
+                screen.blit(winner_image, (SCREEN_WIDTH // 2 - winner_image.get_width() //
+                            2, SCREEN_HEIGHT // 2 - winner_image.get_height() // 2))
             else:
-                screen.blit(lose_image, (SCREEN_WIDTH // 2 - lose_image.get_width() // 2, SCREEN_HEIGHT // 2 - lose_image.get_height() // 2))
-            pygame.display.flip() 
+                screen.blit(lose_image, (SCREEN_WIDTH // 2 - lose_image.get_width() //
+                            2, SCREEN_HEIGHT // 2 - lose_image.get_height() // 2))
+            pygame.display.flip()
         else:
-            result = font.render(f"Lives: {player_lives}", True, (255, 255, 255))
+            result = font.render(
+                f"Lives: {player_lives}", True, (255, 255, 255))
             screen.blit(result, (10, 10))
-            health_runner = font.render(f"Score: {player.score}", True, (255, 255, 255))
+            health_runner = font.render(
+                f"Score: {player.score}", True, (255, 255, 255))
             screen.blit(health_runner, (10, 50))
 
         pygame.display.flip()
         clock.tick(60)
+
 
 pygame.quit()

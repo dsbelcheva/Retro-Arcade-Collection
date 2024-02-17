@@ -3,6 +3,7 @@ from unittest.mock import Mock, patch
 import pygame
 from galacticinvaders.enemy import Enemy, SCREEN_WIDTH, SCREEN_HEIGHT
 
+
 class TestEnemy(unittest.TestCase):
     def setUp(self):
         pygame.init()
@@ -41,6 +42,7 @@ class TestEnemy(unittest.TestCase):
         Enemy.generate_enemy(enemies_list, '../images/enemy.png')
         self.assertEqual(len(enemies_list), 1)
         self.assertIsInstance(enemies_list[0], Enemy)
+
 
 if __name__ == '__main__':
     unittest.main()

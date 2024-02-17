@@ -3,6 +3,7 @@ from unittest.mock import patch, MagicMock
 import pygame
 from epicrace.enemy_car import EnemyCar, SCREEN_WIDTH, SCREEN_HEIGHT
 
+
 class TestEnemyCar(unittest.TestCase):
     def setUp(self):
         pygame.init()
@@ -44,12 +45,12 @@ class TestEnemyCar(unittest.TestCase):
     @patch('random.choice', return_value='../images/car1.png')
     def test_generate_enemy(self, mock_choice, mock_randint):
         enemies_list = []
-        EnemyCar.generate_enemy(enemies_list, ['../images/car1.png', '../images/car2.png'])
+        EnemyCar.generate_enemy(
+            enemies_list, ['../images/car1.png', '../images/car2.png'])
         self.assertEqual(len(enemies_list), 1)
         self.assertIsInstance(enemies_list[0], EnemyCar)
         self.assertEqual(enemies_list[0].rect.topleft, (100, -74))
 
+
 if __name__ == '__main__':
     unittest.main()
-
-

@@ -1,8 +1,9 @@
 import pygame
 
+
 class Monster:
     def __init__(self, x, y, image, speed):
-        self.image =  pygame.image.load(image)
+        self.image = pygame.image.load(image)
         self.rect = self.image.get_rect(topright=(x, y))
         self.active = False
         self.speed = speed

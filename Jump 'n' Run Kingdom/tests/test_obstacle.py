@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 from jumprun.obstacle import Platform, SCREEN_WIDTH, SCREEN_HEIGHT, PLATFORM_WIDTH
 
+
 class TestPlatform(unittest.TestCase):
 
     def setUp(self):
@@ -30,7 +31,8 @@ class TestPlatform(unittest.TestCase):
         player_speed = 5
         initial_x = 100
         self.mock_rect.x = initial_x
-        platform = Platform(initial_x, SCREEN_HEIGHT - 360, '../images/platform.png')
+        platform = Platform(initial_x, SCREEN_HEIGHT -
+                            360, '../images/platform.png')
         platform.update(player_speed)
         self.assertEqual(platform.rect.x, initial_x - player_speed)
 
@@ -43,8 +45,6 @@ class TestPlatform(unittest.TestCase):
             expected_x = SCREEN_WIDTH + i * (PLATFORM_WIDTH + 200)
             self.assertTrue(mock_generate_platforms.called)
 
+
 if __name__ == '__main__':
     unittest.main()
-
-
-

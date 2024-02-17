@@ -3,6 +3,7 @@ from unittest.mock import patch
 import pygame
 from epicrace.traffic_light import TrafficLight
 
+
 class TestTrafficLight(unittest.TestCase):
     @patch('pygame.image.load')
     @patch('pygame.time.get_ticks')
@@ -25,6 +26,6 @@ class TestTrafficLight(unittest.TestCase):
         light.update()
         self.assertEqual(light.current_color, 'RED')
 
+
 if __name__ == '__main__':
     unittest.main()
-

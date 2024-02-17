@@ -7,7 +7,7 @@ setup(
     install_requires=[
         'click',
     ],
-      entry_points={
+    entry_points={
         'console_scripts': [
             'play-epic-race=epicrace.play_epic_race:cli',
         ],
