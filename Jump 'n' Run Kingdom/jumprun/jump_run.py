@@ -1,9 +1,9 @@
 import pygame
-from runner import Runner
-from obstacle import Platform
-from coin import Coin
-from item import Item
-from monster import Monster
+from .runner import Runner
+from .obstacle import Platform
+from .coin import Coin
+from .item import Item
+from .monster import Monster
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 1200, 720
 background_position_1 = [0, 0]
