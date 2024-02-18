@@ -6,20 +6,14 @@ class MysticBlocks:
         self.level = 2
         self.score = 0
         self.state = "start"
-        self.field = []
-        self.height = 0
-        self.width = 0
         self.x = 100
         self.y = 60
         self.zoom = 20
         self.figure = None
         self.mode = mode
-
         self.height = height
         self.width = width
         self.field = []
-        self.score = 0
-        self.state = "start"
         Figure.figures_generated = 0
         for i in range(height):
             new_line = []
